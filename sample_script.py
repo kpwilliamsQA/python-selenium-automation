@@ -5,7 +5,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from time import sleep
 
 # get the path to the ChromeDriver executable
-driver_path = ChromeDriverManager().install()
+driver_path: str = ChromeDriverManager().install()
 
 # create a new Chrome browser instance
 service = Service(driver_path)
@@ -18,7 +18,7 @@ driver.get('https://www.google.com/')
 # populate search field
 search = driver.find_element(By.NAME, 'q')
 search.clear()
-search.send_keys('Car')
+search.send_keys('table')
 
 # wait for 4 sec
 sleep(4)
@@ -27,7 +27,7 @@ sleep(4)
 driver.find_element(By.NAME, 'btnK').click()
 
 # verify search results
-assert 'car'.lower() in driver.current_url.lower(), f"Expected query not in {driver.current_url.lower()}"
+assert 'table'.lower() in driver.current_url.lower(), f"Expected query not in {driver.current_url.lower()}"
 print('Test Passed')
 
 driver.quit()
